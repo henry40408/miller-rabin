@@ -1,11 +1,17 @@
 import os
+import sys
 
 from flask import Flask, request, jsonify, render_template
 
 from miller_rabin import probably_prime
 
 DEBUG = True if os.environ.get("DEBUG", "") == "" else os.environ.get("DEBUG", "")
-PORT = os.environ.get("PORT", "5000")
+
+try:
+    PORT = int(sys.argv[1])
+except IndexError:
+    PORT = 5000
+
 APPLICATION_HOST = os.environ.get("APPLICATION_HOST", "localhost:{0}".format(PORT))
 
 app = Flask(__name__)
@@ -25,4 +31,4 @@ def miller_rabin_route():
 
 
 if __name__ == "__main__":
-    app.run(debug=DEBUG)
+    app.run(debug=DEBUG, port=PORT)
