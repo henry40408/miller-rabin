@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, render_template
 
 from miller_rabin import probably_prime
 
-DEBUG = True if os.environ.get("DEBUG", "") == "" else bool(os.environ.get("DEBUG", ""))
+DEBUG = True if os.environ.get("DEBUG", "") == "" else bool(os.environ.get("DEBUG"))
 
 try:
     PORT = int(sys.argv[1])
@@ -31,4 +31,4 @@ def miller_rabin_route():
 
 
 if __name__ == "__main__":
-    app.run(debug=DEBUG, port=PORT)
+    app.run(debug=DEBUG, port=PORT, host="0.0.0.0")
