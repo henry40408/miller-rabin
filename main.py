@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify, render_template
 
 from miller_rabin import probably_prime
 
-DEBUG = True if os.environ.get("DEBUG", "") == "" else os.environ.get("DEBUG", "")
+DEBUG = True if os.environ.get("DEBUG", "") == "" else bool(os.environ.get("DEBUG", ""))
 
 try:
     PORT = int(sys.argv[1])
